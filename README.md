@@ -82,8 +82,6 @@ This project replicates a real-world corporate network environment based on an I
 | 10 | **Snapd broken on Parrot OS** | AppArmor conflict prevented snapd from starting for Autopsy 4 install | Used manual Autopsy 4 installation with explicit jdkhome configuration instead of snap |
 
 
-
-
 ## 🖧 Part 1 — Campus Network Design (Cisco Packet Tracer)
 
 A reference campus network was designed and configured in Cisco Packet Tracer using a three-tier hierarchical model with five VLANs, a DMZ, an edge router, and an ISP router.
