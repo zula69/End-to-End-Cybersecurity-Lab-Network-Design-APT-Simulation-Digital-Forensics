@@ -597,6 +597,57 @@ Students (VLAN 10) → ❌ VLAN 20 (Staff)
 ### VM setup
 
 - setting up metasploitable
+<img width="1920" height="1080" alt="metasploit setup 1" src="https://github.com/user-attachments/assets/a76df881-66bd-48b8-9970-e6163a39b4cc" />
+
+<img width="1920" height="1080" alt="metasloitable2" src="https://github.com/user-attachments/assets/c3689e65-7c9a-4832-82e6-33cf06285ce3" />
+
+- All VMs setup
+<img width="1920" height="1080" alt="all vms set" src="https://github.com/user-attachments/assets/20c2297f-66bc-4bd7-9492-6b7206894e68" />
+
+### creating a host - only network and setting up ips for each VM
+
+- creating a host only network
+<img width="1920" height="1080" alt="creating a host only network" src="https://github.com/user-attachments/assets/8a39d4d3-9979-4499-872b-3a9dad76dbed" />
+
+- applying the host-only adapter to all vms
+<img width="1920" height="1080" alt="applyiing host only adapter parrot" src="https://github.com/user-attachments/assets/bf9dee84-5fd5-4b0f-8d38-7ede3af021d3" />
+
+<img width="1920" height="1080" alt="applyiing host only adapter kali 2" src="https://github.com/user-attachments/assets/7d7691f8-8710-46c4-b192-d1711b6a5638" />
+
+<img width="1920" height="1080" alt="applyiing host only adapter kali 1" src="https://github.com/user-attachments/assets/31162747-cd9c-471d-acb3-6a75541c9059" />
+
+<img width="1920" height="1080" alt="applyiing host only adapter metasploit" src="https://github.com/user-attachments/assets/bc53eeaf-f7ce-4457-9795-08f2f7d8b775" />
+
+- Setting up ip for kali 1
+<img width="1920" height="1080" alt="setting up ip for kali 1" src="https://github.com/user-attachments/assets/e2766194-3ca3-4b8f-8ce5-2bf0dbf15e56" />
+
+<img width="1920" height="1080" alt="setting up ip for kali 1     2" src="https://github.com/user-attachments/assets/2e4bcffa-205d-4deb-973b-e10a92210e48" />
+
+<img width="1920" height="1080" alt="setting up ip for kali 1     3" src="https://github.com/user-attachments/assets/bfd22f1a-7f9d-46c5-8353-1732ad6a616c" />
+
+- Setting up ip for kali 2
+<img width="1920" height="1080" alt="setting up ip for kali 2" src="https://github.com/user-attachments/assets/e543fabf-2754-4fe9-9560-6ba58b63b39a" />
+
+<img width="1920" height="1080" alt="setting up ip for kali 2   2" src="https://github.com/user-attachments/assets/517deb64-d2ae-4621-805e-06f2f3a55525" />
+
+<img width="1920" height="1080" alt="setting up ip for kali 2   3" src="https://github.com/user-attachments/assets/3f98b5aa-620b-42d7-a694-ca5f10dc2bcb" />
+
+- Setting up ip for parrot os vm
+<img width="1920" height="1080" alt="setting up ip for parrot" src="https://github.com/user-attachments/assets/aaa4436a-b2a9-4800-8a46-b21f065a8386" />
+
+<img width="1920" height="1080" alt="setting up ip for parrot 2" src="https://github.com/user-attachments/assets/f230854b-a3ac-4188-8e5d-497bec21a025" />
+
+<img width="1920" height="1080" alt="setting up ip for parrot 3" src="https://github.com/user-attachments/assets/4f8c41fd-236c-4053-ab4d-44c78b01fe7a" />
+
+
+
+
+
+
+
+
+
+
 
 
 
