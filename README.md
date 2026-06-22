@@ -74,17 +74,16 @@ This project replicates a real-world corporate network environment based on an I
 | 2 | **LiME kernel header mismatch** | LiME failed to compile due to Kali running a cutting-edge kernel with no available headers | Installed stable kernel packages with matching headers and rebooted before recompiling LiME |
 | 3 | **Memory evidence lost** | Volatile memory data (processes, connections) had disappeared by the time Volatility3 analysis began | Documented as a key lesson: memory forensics must be performed live during the incident window |
 | 4 | **Autopsy 2.x image format error** | apt-installed Autopsy (v2.24) returned "image format type could not be determined" | Replaced with The Sleuth Kit CLI tools (mmls, fls, icat, mactime) — the same engine Autopsy wraps |
-| 5 | **Autopsy 4.x Java conflict** | Autopsy 4.21 crashed due to system running Java 25 (Security Manager removed in Java 17+) | Fixed by editing etc/autopsy.conf to set jdkhome to the Java 17 path, bypassing system Java |
-| 6 | **Disk image using wrong partition offset** | TSK commands returned no results when using default offset | Used mmls to identify correct start sector (63 for boot, LVM at 482013) and applied -o flag |
-| 7 | **LVM partition not accessible via TSK** | Root filesystem was inside LVM — fls returned no attack artifacts | Activated LVM with vgscan/vgchange and mounted root volume read-only for direct filesystem access |
-| 8 | **NetworkMiner rendering broken on Parrot KDE** | Mono + KDE caused black/blank GUI on all launch attempts | Replaced with tcpflow for stream reconstruction and p0f for OS fingerprinting — native Linux tools |
-| 9 | **Plaso CSV empty on first run** | psort used > redirection which corrupted the output | Used the -w flag instead of shell redirection to write the CSV file correctly |
-| 10 | **Snapd broken on Parrot OS** | AppArmor conflict prevented snapd from starting for Autopsy 4 install | Used manual Autopsy 4 installation with explicit jdkhome configuration instead of snap |
+| 5 | **Disk image using wrong partition offset** | TSK commands returned no results when using default offset | Used mmls to identify correct start sector (63 for boot, LVM at 482013) and applied -o flag |
+| 6 | **LVM partition not accessible via TSK** | Root filesystem was inside LVM — fls returned no attack artifacts | Activated LVM with vgscan/vgchange and mounted root volume read-only for direct filesystem access |
+| 7 | **NetworkMiner rendering broken on Parrot KDE** | Mono + KDE caused black/blank GUI on all launch attempts | Replaced with tcpflow for stream reconstruction and p0f for OS fingerprinting — native Linux tools |
+| 8 | **Plaso CSV empty on first run** | psort used > redirection which corrupted the output | Used the -w flag instead of shell redirection to write the CSV file correctly |
+
 
 
 ## 🖧 Part 1 — Campus Network Design (Cisco Packet Tracer)
 
-A reference campus network was designed and configured in Cisco Packet Tracer using a three-tier hierarchical model with five VLANs, a DMZ, an edge router, and an ISP router.
+A reference campus network was designed and configured in Cisco Packet Tracer using a three-tier hierarchical model (access layer, destribution layer and core layer) with five VLANs, a DMZ, an edge router, and an ISP router.
 
 ### Network Topology Overview
 
@@ -109,11 +108,11 @@ Configured and labelled all network devices in the topology before beginning con
 
 - Labelled network devices and physical connections
 <!-- Screenshot: labelled devices -->
-![Labelled Devices](screenshots/pt_labelled_devices.png)
+<img width="1920" height="1080" alt="PT all labled devices" src="https://github.com/user-attachments/assets/ec3cecff-5645-4c56-b200-03ea7c55765f" />
 
 - Connected all devices in the topology
 <!-- Screenshot: connected devices -->
-![Connected Devices](screenshots/pt_connected_devices.png)
+<img width="1920" height="1080" alt="PT all connected devices" src="https://github.com/user-attachments/assets/e5dd32b0-e08b-4276-bb10-cada69fa480c" />
 
 ---
 
@@ -123,19 +122,22 @@ Configured the access layer switch for the Student Lab, assigned VLAN 10, and se
 
 - Changing hostname of Student Lab switch
 <!-- Screenshot -->
-![Student Switch Hostname](screenshots/pt_student_hostname.png)
+<img width="1920" height="1080" alt="changing hostanme of student lab" src="https://github.com/user-attachments/assets/5218d38f-f733-4bf2-8905-c9d8be74cf87" />
 
 - Configuring VLAN 10 (Students — 10.10.10.0/24)
 <!-- Screenshot -->
-![VLAN 10 Config](screenshots/pt_vlan10_config.png)
+<img width="1920" height="1080" alt="fao1  vlan 10" src="https://github.com/user-attachments/assets/fe61209d-2008-495b-b3a3-ed3e6ded8aa4" />
+
+<img width="1920" height="1080" alt="fao3  vlan 10" src="https://github.com/user-attachments/assets/1365bb53-dad6-4c90-8280-ee00bbefc856" />
 
 - Creating trunk port on Student Lab switch
 <!-- Screenshot -->
-![Student Trunk Port](screenshots/pt_student_trunk.png)
+<img width="1920" height="1080" alt="creating trunk port" src="https://github.com/user-attachments/assets/4c04e064-2650-41bf-8b5f-c8662b4722a2" />
+
 
 - Confirming VLAN 10 is active and working
 <!-- Screenshot -->
-![VLAN 10 Confirmation](screenshots/pt_vlan10_confirm.png)
+<img width="1920" height="1080" alt="confirming student lab vlan working" src="https://github.com/user-attachments/assets/47359a13-b905-41cc-94ee-94b2f97f6253" />
 
 ---
 
@@ -143,19 +145,23 @@ Configured the access layer switch for the Student Lab, assigned VLAN 10, and se
 
 - Changing hostname of Staff switch
 <!-- Screenshot -->
-![Staff Switch Hostname](screenshots/pt_staff_hostname.png)
+<img width="1920" height="1080" alt="creatong hostname of staff" src="https://github.com/user-attachments/assets/de0b2bb1-82e6-484a-96d6-492b39ea76a6" />
 
 - Creating VLAN 20 (Staff — 10.20.20.0/24)
 <!-- Screenshot -->
-![VLAN 20 Config](screenshots/pt_vlan20_config.png)
+<img width="1920" height="1080" alt="creating vlan 20" src="https://github.com/user-attachments/assets/2257abb5-383d-4119-8407-cf1e36c559f4" />
+
+<img width="1920" height="1080" alt="fa 01 and fa 03 vlan 20" src="https://github.com/user-attachments/assets/40a5fb50-7361-41de-99da-2189f7519fc3" />
+
 
 - Creating trunk port on Staff switch
 <!-- Screenshot -->
-![Staff Trunk Port](screenshots/pt_staff_trunk.png)
+<img width="1920" height="1080" alt="trunk vlan 20" src="https://github.com/user-attachments/assets/db332dbc-40ad-4083-9827-f2848e33deb7" />
+
 
 - Confirming VLAN 20 is active
 <!-- Screenshot -->
-![VLAN 20 Confirmation](screenshots/pt_vlan20_confirm.png)
+<img width="1920" height="1080" alt="confirmation vlan 20" src="https://github.com/user-attachments/assets/d3c50680-5be6-4f4e-aba7-1a8f9b9c2924" />
 
 ---
 
@@ -163,19 +169,23 @@ Configured the access layer switch for the Student Lab, assigned VLAN 10, and se
 
 - Changing hostname of Admin switch
 <!-- Screenshot -->
-![Admin Switch Hostname](screenshots/pt_admin_hostname.png)
+<img width="1920" height="1080" alt="changinghostname of admin" src="https://github.com/user-attachments/assets/3bcd16a1-fb6e-40d2-8378-7f8b854d439b" />
+
 
 - Creating VLAN 30 (Admin — 10.30.30.0/24)
 <!-- Screenshot -->
-![VLAN 30 Config](screenshots/pt_vlan30_config.png)
+<img width="1920" height="1080" alt="creating vlan 30" src="https://github.com/user-attachments/assets/4d62cfba-2f5f-4174-b5a0-ccd0c78d4855" />
+
+<img width="1920" height="1080" alt="configuring interfaces to acces vlan 30" src="https://github.com/user-attachments/assets/cc4d24a0-f75f-4a88-b027-045b8c0d57d5" />
 
 - Creating trunk port on Admin switch
 <!-- Screenshot -->
-![Admin Trunk Port](screenshots/pt_admin_trunk.png)
+<img width="1920" height="1080" alt="trunk" src="https://github.com/user-attachments/assets/d144884a-9b99-4006-8a35-36e31caab7c6" />
+
 
 - Confirming VLAN 30 is active
 <!-- Screenshot -->
-![VLAN 30 Confirmation](screenshots/pt_vlan30_confirm.png)
+<img width="1920" height="1080" alt="confirming vlan active" src="https://github.com/user-attachments/assets/94123bf8-d2c5-47d5-b866-9cebda082d3c" />
 
 ---
 
@@ -183,19 +193,24 @@ Configured the access layer switch for the Student Lab, assigned VLAN 10, and se
 
 - Changing hostname of Library switch
 <!-- Screenshot -->
-![Library Switch Hostname](screenshots/pt_library_hostname.png)
+<img width="1920" height="1080" alt="changing hostname of library switch4" src="https://github.com/user-attachments/assets/1c26cf6a-8bc2-4052-865e-4469fe730474" />
+
 
 - Creating VLAN 40 (Library — 10.40.40.0/24)
 <!-- Screenshot -->
-![VLAN 40 Config](screenshots/pt_vlan40_config.png)
+<img width="1920" height="1080" alt="creating vlan 40" src="https://github.com/user-attachments/assets/aac73a40-80a9-4839-a685-eecbff7f873e" />
+
+<img width="1920" height="1080" alt="adding interfaces to ccessport vlan 40" src="https://github.com/user-attachments/assets/e0dc7efa-8847-4b15-b1e8-fbb5ad832b7a" />
+
 
 - Trunk port setup on Library switch
 <!-- Screenshot -->
-![Library Trunk Port](screenshots/pt_library_trunk.png)
+<img width="1920" height="1080" alt="trunk port setup" src="https://github.com/user-attachments/assets/65193bec-1793-4ae8-b35b-542fac1633fb" />
+
 
 - Confirming VLAN 40 is active
 <!-- Screenshot -->
-![VLAN 40 Confirmation](screenshots/pt_vlan40_confirm.png)
+<img width="1920" height="1080" alt="library vlan active" src="https://github.com/user-attachments/assets/bce8c046-36c5-4545-95e2-ab5e04691f41" />
 
 ---
 
@@ -203,19 +218,21 @@ Configured the access layer switch for the Student Lab, assigned VLAN 10, and se
 
 - Changing hostname of Guest WiFi switch
 <!-- Screenshot -->
-![Guest WiFi Hostname](screenshots/pt_guest_hostname.png)
+<img width="1920" height="1080" alt="hostname guest wifi switch 5" src="https://github.com/user-attachments/assets/c2bcad6f-3929-4928-9529-11512c9d4119" />
 
 - Creating VLAN 50 (Guest WiFi — 10.50.50.0/24)
 <!-- Screenshot -->
-![VLAN 50 Config](screenshots/pt_vlan50_config.png)
+<img width="1920" height="1080" alt="creating vlan 50 guest wifi" src="https://github.com/user-attachments/assets/9374faea-960d-40e2-8e94-a28705c744f9" />
+
+<img width="1920" height="1080" alt="adding interface to vlan 50" src="https://github.com/user-attachments/assets/d76d4ac8-ca80-4f55-b79b-9600e3448a9a" />
 
 - Trunk port setup on Guest WiFi switch
 <!-- Screenshot -->
-![Guest Trunk Port](screenshots/pt_guest_trunk.png)
+<img width="1920" height="1080" alt="trunk 50" src="https://github.com/user-attachments/assets/53b1aa60-1011-43ba-928c-06e75ba6b25a" />
 
 - Confirming VLAN 50 is active
 <!-- Screenshot -->
-![VLAN 50 Confirmation](screenshots/pt_vlan50_confirm.png)
+<img width="1920" height="1080" alt="vlan confirmation 50" src="https://github.com/user-attachments/assets/597d4ef3-1079-4f20-93f6-1151ea7bacf6" />
 
 ---
 
