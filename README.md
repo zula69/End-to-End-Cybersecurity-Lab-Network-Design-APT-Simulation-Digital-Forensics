@@ -242,23 +242,29 @@ The first distribution layer switch aggregates traffic from Student Lab, Staff, 
 
 - Changing hostname of Distribution Switch 1
 <!-- Screenshot -->
-![Dist SW1 Hostname](screenshots/pt_dist1_hostname.png)
+<img width="1920" height="1080" alt="hostname desswitch1" src="https://github.com/user-attachments/assets/b2290c21-1525-4662-ba03-dd634b399bbe" />
 
 - Creating VLANs on Distribution Switch 1
 <!-- Screenshot -->
-![Dist SW1 VLANs](screenshots/pt_dist1_vlans.png)
+<img width="1920" height="1080" alt="creating vlans in desswitch1" src="https://github.com/user-attachments/assets/027ace0b-11e1-4380-a910-0de1a9ec53fe" />
 
 - Confirming VLANs are active
 <!-- Screenshot -->
-![Dist SW1 VLAN Confirm](screenshots/pt_dist1_vlan_confirm.png)
+<img width="1920" height="1080" alt="vlans active in destribution switch" src="https://github.com/user-attachments/assets/58e79409-ba66-4a4a-8173-8c530cbca605" />
+
 
 - Configuring uplink trunk port (to Core Switch)
 <!-- Screenshot -->
-![Dist SW1 Uplink Trunk](screenshots/pt_dist1_uplink.png)
+<img width="1920" height="1080" alt="uplink trunk" src="https://github.com/user-attachments/assets/d46af589-162b-4005-9228-71c64794d6b8" />
+
 
 - Configuring downlink trunk ports (to access switches)
 <!-- Screenshot -->
-![Dist SW1 Downlink Trunks](screenshots/pt_dist1_downlinks.png)
+<img width="1920" height="1080" alt="downlink switchport pallehata yana tika trunk" src="https://github.com/user-attachments/assets/65a2a599-9c7e-4b38-800a-1086480d470a" />
+
+<img width="1920" height="1080" alt="2" src="https://github.com/user-attachments/assets/ef49544e-889a-461c-967a-38e4736d8a27" />
+
+<img width="1920" height="1080" alt="downlink switchport pallehata yana tika trunk 3" src="https://github.com/user-attachments/assets/1488cb00-d197-464f-bde9-e4c0489dbac0" />
 
 ---
 
@@ -268,23 +274,20 @@ The second distribution switch aggregates Library and Guest WiFi traffic.
 
 - Changing hostname of Distribution Switch 2
 <!-- Screenshot -->
-![Dist SW2 Hostname](screenshots/pt_dist2_hostname.png)
+<img width="1920" height="1080" alt="changing hostname of desswitch 2" src="https://github.com/user-attachments/assets/4d1060a3-9a5a-491c-9040-6f54213c3329" />
+
 
 - Creating VLANs on Distribution Switch 2
 <!-- Screenshot -->
-![Dist SW2 VLANs](screenshots/pt_dist2_vlans.png)
-
-- Confirming VLANs active
-<!-- Screenshot -->
-![Dist SW2 VLAN Confirm](screenshots/pt_dist2_vlan_confirm.png)
+<img width="1920" height="1080" alt="adding vlans to destr switch 2" src="https://github.com/user-attachments/assets/1c87f3f0-a6f0-4004-afac-b9f9a39329da" />
 
 - Configuring uplink trunk port (to Core Switch)
 <!-- Screenshot -->
-![Dist SW2 Uplink](screenshots/pt_dist2_uplink.png)
+<img width="1920" height="1080" alt="setting uyplink trunk port" src="https://github.com/user-attachments/assets/1e92d654-e843-4a9e-91e5-c7419a308268" />
 
 - Configuring downlink trunk ports
 <!-- Screenshot -->
-![Dist SW2 Downlinks](screenshots/pt_dist2_downlinks.png)
+<img width="1920" height="1080" alt="settingup downlink trunk ports" src="https://github.com/user-attachments/assets/747f76c7-b263-4cbd-b13d-acdba34057c8" />
 
 ---
 
@@ -294,49 +297,70 @@ The core switch provides Layer 3 inter-VLAN routing, assigns SVI IP addresses fo
 
 - Changing hostname of Core Switch
 <!-- Screenshot -->
-![Core Switch Hostname](screenshots/pt_core_hostname.png)
+<img width="1920" height="1080" alt="changing the hostname of coreswitch" src="https://github.com/user-attachments/assets/388f4d39-a951-470b-a1f3-1b267e1bb12f" />
 
 - Adding all VLANs to Core Switch
 <!-- Screenshot -->
-![Core VLANs](screenshots/pt_core_vlans.png)
+<img width="1920" height="1080" alt="adding vlans to core switch" src="https://github.com/user-attachments/assets/d84da289-bf4b-42da-9d36-8c38d0640e1d" />
 
-- Setting up SVI interfaces and IP addresses for each VLAN
+<img width="1920" height="1080" alt="confirmation" src="https://github.com/user-attachments/assets/6b440c78-3eee-4d8c-b780-d457a15cfe96" />
+
+- Setting up interfaces and IP addresses for each VLAN
 <!-- Screenshot -->
-![Core SVIs](screenshots/pt_core_svi.png)
+<img width="1920" height="1080" alt="setting up interfaces and ips for each vlan in core switch" src="https://github.com/user-attachments/assets/3789b155-12de-422e-a307-cd7e9bd4f69b" />
+
+<img width="1920" height="1080" alt="setting up interfaces and ips for each vlan in core switch           2" src="https://github.com/user-attachments/assets/62cafa5f-24dc-4093-a6fb-a15605c97b06" />
+
+<img width="1920" height="1080" alt="setting up interfaces and ips for each vlan in core switch   3" src="https://github.com/user-attachments/assets/c0c16908-cae5-4516-be91-3dc6e6ffb41b" />
+
+<img width="1920" height="1080" alt="4" src="https://github.com/user-attachments/assets/d9e250ff-6ce9-4e57-ba07-e4f01af82c9a" />
+
+<img width="1920" height="1080" alt="5" src="https://github.com/user-attachments/assets/1f6f8832-706e-4597-b1fe-1f598c3ac6ba" />
 
 - Trunk to Distribution Switch 1
 <!-- Screenshot -->
-![Core Trunk Dist1](screenshots/pt_core_trunk_dist1.png)
+<img width="1920" height="1080" alt="trunking to destribution switches 1" src="https://github.com/user-attachments/assets/8743f5f3-7f34-49d3-b7e1-6bd3efa72c66" />
+
+<img width="1920" height="1080" alt="trunking to destribution switches 1    verifying" src="https://github.com/user-attachments/assets/c87530ac-c595-4a3a-8c3e-cecfd248ec03" />
+
 
 - Trunk to Distribution Switch 2
 <!-- Screenshot -->
-![Core Trunk Dist2](screenshots/pt_core_trunk_dist2.png)
+<img width="1920" height="1080" alt="trunking to destribution switches 2" src="https://github.com/user-attachments/assets/3ce9c58e-9fcd-4a9b-857e-4536fa2d0311" />
+
+<img width="1920" height="1080" alt="verified" src="https://github.com/user-attachments/assets/ac40d86f-f895-4997-913e-7991ef11d645" />
 
 ---
 
-### 🔥 Edge Router (Firewall Replacement)
+### 🔥 Firewall 
 
 > ⚠️ The original Cisco ASA 5505 firewall was replaced with a 2911 router using ACLs and NAT due to Packet Tracer limitations with ASA configuration.
 
+<img width="1920" height="1080" alt="setting up 2911 router as the firewwall beause assa firewall buggey as hell" src="https://github.com/user-attachments/assets/018c8148-c133-4a24-b344-28186f438b08" />
+
+### Edge router
+
 - Changing hostname of Edge Router
 <!-- Screenshot -->
-![Edge Router Hostname](screenshots/pt_edge_hostname.png)
+<img width="1920" height="1080" alt="changing the hostname of the edge router" src="https://github.com/user-attachments/assets/2bf7e0d0-89ff-42e1-96c8-36a1eb9f26cc" />
 
 - Assigning IP addresses on Edge Router interfaces
 <!-- Screenshot -->
-![Edge Router IPs](screenshots/pt_edge_ips.png)
+<img width="1920" height="1080" alt="assinging IP address for ISP port on edge router" src="https://github.com/user-attachments/assets/76eecc37-b93e-465b-a296-d156f05065ed" />
+
+<img width="1920" height="1080" alt="assigning IP address for student firewall router in edge router" src="https://github.com/user-attachments/assets/6cdf2028-f465-498c-af07-805982299152" />
 
 - Permitting all VLANs to access ISP router (NAT/routing)
 <!-- Screenshot -->
-![Edge Router NAT](screenshots/pt_edge_nat.png)
+<img width="1920" height="1080" alt="translate all 10 x x x addresses to the public IP" src="https://github.com/user-attachments/assets/bb96b1fd-4e7a-4690-b1a0-54a4275a3d7d" />
 
 - Setting default route to ISP
 <!-- Screenshot -->
-![Edge Default Route](screenshots/pt_edge_default_route.png)
+<img width="1920" height="1080" alt="stting default route to ISP" src="https://github.com/user-attachments/assets/c7ff2efc-b0d9-4c6c-933a-d7f4fca4e8ed" />
 
 - Setting return route back to campus network
 <!-- Screenshot -->
-![Edge Return Route](screenshots/pt_edge_return_route.png)
+<img width="1920" height="1080" alt="setting route back to campus" src="https://github.com/user-attachments/assets/081fbe9a-55f6-4f87-a8d3-3c3481db0b18" />
 
 ---
 
@@ -344,15 +368,16 @@ The core switch provides Layer 3 inter-VLAN routing, assigns SVI IP addresses fo
 
 - Configuring hostname of ISP Router
 <!-- Screenshot -->
-![ISP Router Hostname](screenshots/pt_isp_hostname.png)
+<img width="1920" height="1080" alt="changing the hostname of the isp router" src="https://github.com/user-attachments/assets/436db109-5841-4335-8984-b011730d8d5d" />
 
 - Adding IP addresses on ISP Router
 <!-- Screenshot -->
-![ISP Router IPs](screenshots/pt_isp_ips.png)
+<img width="1920" height="1080" alt="configuring the edge router interface in ISP router" src="https://github.com/user-attachments/assets/cfed838d-82f1-433b-9d5c-4252c7fe277e" />
 
 - Configuring routing to forward campus traffic
 <!-- Screenshot -->
-![ISP Routing](screenshots/pt_isp_routing.png)
+<img width="1920" height="1080" alt="traffic routing command" src="https://github.com/user-attachments/assets/a836da15-6959-4f35-803f-b7256777af20" />
+
 
 ---
 
