@@ -594,13 +594,34 @@ Students (VLAN 10) → ❌ VLAN 20 (Staff)
 
 ---
 
+### VM setup
+
+- setting up metasploitable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Step 1 — Network Verification
 
 Verified all VMs can communicate over the host-only network before beginning the attack simulation.
 
 - Pinging from Kali #1 to Metasploitable2
 <!-- Screenshot -->
-![Ping Attacker to Victim](screenshots/vm_ping_attacker_victim.png)
+
 
 - Pinging from Kali #2 to all VMs
 <!-- Screenshot -->
