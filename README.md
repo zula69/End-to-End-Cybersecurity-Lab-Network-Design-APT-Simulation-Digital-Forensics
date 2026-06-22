@@ -468,50 +468,98 @@ Four ACLs were implemented on the Core Switch to enforce the campus security pol
 
 <img width="1920" height="1080" alt="saving guest" src="https://github.com/user-attachments/assets/283f73a2-eb0d-4b8d-81e2-76fd3c4598d1" />
 
-```
+
 Guests (VLAN 50) → ❌ VLAN 10 (Students)
-<img width="1920" height="1080" alt="ping to student unsuccessful" src="https://github.com/user-attachments/assets/2183aedc-af2a-4a6c-8b8a-66779d2f50f6" />
+<img width="1920" height="1080" alt="ping to student unsuccessful" src="https://github.com/user-attachments/assets/57dc2f24-de09-4eb9-95ea-98ec77209143" />
 
 Guests (VLAN 50) → ❌ VLAN 20 (Staff)
+<img width="1920" height="1080" alt="ping to staff unsuccessful" src="https://github.com/user-attachments/assets/a172b5f0-aac7-426c-8053-4a5088ff4a00" />
+
 Guests (VLAN 50) → ❌ VLAN 30 (Admin)
-Guests (VLAN 50) → ❌ VLAN 40 (Library)
+<img width="1920" height="1080" alt="ping to admin unsuccessful" src="https://github.com/user-attachments/assets/c7823058-073a-439b-838d-9d6444194b7a" />
+
+Guests (VLAN 50) → ❌ servers
+<img width="1920" height="1080" alt="ping to servers unsuccessful" src="https://github.com/user-attachments/assets/41599f54-e09d-415c-95b8-51f7c7a9cd54" />
+
 Guests (VLAN 50) → ✅ Internet only
-```
+<img width="1920" height="1080" alt="ping to edge router successfull internet working as f" src="https://github.com/user-attachments/assets/bf578518-fb33-4cbd-a25d-6464817c71b6" />
+
 
 #### ACL 2 — Student Policy
 > Students can access Library and DMZ but cannot reach Admin or Staff systems
+<img width="1920" height="1080" alt="creating student policy" src="https://github.com/user-attachments/assets/ccd718ca-8dd0-41c5-b1b4-563049ee7376" />
 
-```
+- Blocking staff and admin LANs
+<img width="1920" height="1080" alt="denying staff and admin" src="https://github.com/user-attachments/assets/e7aca8e2-7364-4b3e-badc-42a36f117b1e" />
+
+- Permitting library and the internet
+<img width="1920" height="1080" alt="permitting library servers and internet" src="https://github.com/user-attachments/assets/7133598c-22b8-4561-a69a-101b18a9a8bd" />
+
+<img width="1920" height="1080" alt="saving the config" src="https://github.com/user-attachments/assets/756ecf4b-261e-4c6c-ac9f-835046dfa487" />
+
+
+
 Students (VLAN 10) → ✅ VLAN 40 (Library)
-Students (VLAN 10) → ✅ DMZ (Web/DNS)
-Students (VLAN 10) → ❌ VLAN 30 (Admin)
-Students (VLAN 10) → ❌ VLAN 20 (Staff)
-```
+<img width="1920" height="1080" alt="ping to library" src="https://github.com/user-attachments/assets/645546e3-1f71-44a1-8aef-bc59c3f0ad4a" />
 
-#### ACL 3 — DMZ Server Protection
+Students (VLAN 10) → ✅ Edge router
+<img width="1920" height="1080" alt="ping to edge router" src="https://github.com/user-attachments/assets/82ba1116-ab02-45a0-ba29-63b1e7b24396" />
+
+
+Students (VLAN 10) → ❌ VLAN 30 (Admin)
+<img width="1920" height="1080" alt="ping to admin not success" src="https://github.com/user-attachments/assets/c844c802-28ba-4223-bea6-b4615f0cec72" />
+
+Students (VLAN 10) → ❌ VLAN 20 (Staff)
+<img width="1920" height="1080" alt="ping to staff not working" src="https://github.com/user-attachments/assets/233e9568-71c5-4c8f-a1d4-3d5e45217593" />
+
+
+
+#### ACL 3 — DMZ Server Protection (firewall configuration)
 > Only specific traffic allowed to reach DMZ. Only IT Staff can SSH into servers.
 
-```
-Internet → ✅ Port 80/443 (HTTP/HTTPS)
-Internet → ✅ Port 53 (DNS)
-Internet → ❌ All other ports
-VLAN 20 (Staff) → ✅ Port 22 (SSH management)
-All others → ❌ Port 22
-```
+- Allow public IPs to access the web server
+<img width="1920" height="1080" alt="firewall acl 1 allow web server access to public" src="https://github.com/user-attachments/assets/d2f83579-b91e-4f5f-bf07-60a6b1b99f5a" />
+
+<img width="1920" height="1080" alt="firewall acl 1 allow web server access to public 2" src="https://github.com/user-attachments/assets/ce94b6ff-d132-4438-9a2b-0e57adf64104" />
+
+- Allow public IPs to access the DNS
+<img width="1920" height="1080" alt="allow dns t" src="https://github.com/user-attachments/assets/2bdf0265-59bd-4763-a13d-cf82d58c5775" />
+
+- Permit only the staff to SSH servers
+<img width="1920" height="1080" alt="permit only staff to ssh servers" src="https://github.com/user-attachments/assets/97deed4a-fec5-464a-9b79-3497803848fe" />
+
+- Block access from any other IPs to the servers
+<img width="1920" height="1080" alt="block others from accessing servers" src="https://github.com/user-attachments/assets/366a3d16-da5b-4e64-9c53-1de09f967eb5" />
+
+- Permitting all other traffic through the firewall
+<img width="1920" height="1080" alt="permit other all trafic through firewall" src="https://github.com/user-attachments/assets/351cc9b8-dc94-447a-90b7-695007f2275e" />
+
+- Saving the configuration
+<img width="1920" height="1080" alt="saving the firewall config" src="https://github.com/user-attachments/assets/e8028319-46bd-4ff5-8e2a-798c9aefdc5e" />
+
 
 #### ACL 4 — Admin Office Protection
 > Only Admin and Staff VLANs can access the Admin network
 
-```
-VLAN 30 (Admin) → ✅ VLAN 30
-VLAN 20 (Staff) → ✅ VLAN 30
-VLAN 10 (Students) → ❌ VLAN 30
-VLAN 50 (Guests) → ❌ VLAN 30
-```
+- Allow admin pcs to work within the admin LAN
+<img width="1920" height="1080" alt="admin acl allow admin to admin" src="https://github.com/user-attachments/assets/46b860a5-7c45-493e-944e-5f9b669d8018" />
+
+- Permit staff to work with admin
+<img width="1920" height="1080" alt="permit staff to work with admin" src="https://github.com/user-attachments/assets/310bf76e-d6ed-4dd0-bc4c-043ba0a754a1" />
+
+- Block student, library and guest IPs
+<img width="1920" height="1080" alt="deny student library and guest to admin" src="https://github.com/user-attachments/assets/46787572-b9f2-4961-974b-3255b3973048" />
+
+- Permit other traffic
+<img width="1920" height="1080" alt="permit other traffic" src="https://github.com/user-attachments/assets/a4fe6bd0-c7c8-41ac-bb60-6188378a5854" />
+
+- Saving the configuration
+<img width="1920" height="1080" alt="saving the config admin" src="https://github.com/user-attachments/assets/a5941807-30b3-4798-82e3-09e5e1163b1e" />
 
 - ACL verification using `show access-lists` on Core Switch
 <!-- Screenshot -->
-![ACL Verification](screenshots/pt_acl_verify.png)
+<img width="1920" height="1080" alt="accesslists verification" src="https://github.com/user-attachments/assets/96247777-125b-4413-ab2a-f028576d869d" />
+
 
 ---
 
