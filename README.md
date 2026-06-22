@@ -31,6 +31,59 @@ This project replicates a real-world corporate network environment based on an I
 
 ---
 
+## 🛠️ Tools Used
+
+| Tool | Purpose | Phase |
+|------|---------|-------|
+| **Cisco Packet Tracer** | Campus network design and simulation | Network Design |
+| **Nmap** | Network reconnaissance and port scanning | Reconnaissance |
+| **Metasploit Framework** | Exploitation of Samba usermap_script (CVE-2007-2447) | Exploitation |
+| **Netcat** | Data exfiltration via port 5555 | Exfiltration |
+| **tcpdump** | Passive network traffic capture on Kali #2 | Evidence Collection |
+| **LiME** | Live memory acquisition from victim machine | Evidence Collection |
+| **dd** | Forensic disk image acquisition | Evidence Collection |
+| **Wireshark** | PCAP analysis, protocol inspection, stream reconstruction | Network Forensics |
+| **Volatility3** | Memory dump analysis | Memory Forensics |
+| **The Sleuth Kit (TSK)** | Disk forensics — mmls, fls, icat, fsstat, mactime | Disk Forensics |
+| **Foremost** | File carving from disk image | Disk Forensics |
+| **Plaso / log2timeline** | Super timeline generation (62,631 events) | Timeline Analysis |
+| **tcpflow** | TCP stream reconstruction and data extraction | Network Forensics |
+| **p0f** | Passive OS fingerprinting from PCAP | Network Forensics |
+
+---
+
+## 🔑 Key Findings
+
+| Finding | Evidence Source | Detail |
+|---------|----------------|--------|
+| Nmap reconnaissance confirmed | Wireshark SYN filter | Rapid SYN packets to multiple ports from 192.168.56.10 |
+| vsftpd exploit attempted but failed | Wireshark + Metasploit logs | CVE-2011-2523 not triggered |
+| Samba exploit successful | Wireshark port 445 stream | CVE-2007-2447 payload confirmed |
+| Root shell on port 6200 | Wireshark TCP stream | Attacker commands visible in plaintext |
+| Backdoor user created | /etc/passwd on disk | aptbackdoor:x:1003:1003::/home/aptbackdoor:/bin/bash |
+| Data exfiltration confirmed | Wireshark port 5555 stream | Employee data visible in plaintext |
+| 62,631 filesystem events | Plaso disk timeline | Complete activity log of victim disk |
+
+---
+
+## ⚡ Challenges & Mitigations
+
+| # | Challenge | What Happened | How It Was Fixed |
+|---|-----------|---------------|-----------------|
+| 1 | **vsftpd exploit failed** | Metasploit vsftpd_234_backdoor module did not trigger a shell | Switched to Samba usermap_script exploit (CVE-2007-2447) which successfully returned a root shell |
+| 2 | **LiME kernel header mismatch** | LiME failed to compile due to Kali running a cutting-edge kernel with no available headers | Installed stable kernel packages with matching headers and rebooted before recompiling LiME |
+| 3 | **Memory evidence lost** | Volatile memory data (processes, connections) had disappeared by the time Volatility3 analysis began | Documented as a key lesson: memory forensics must be performed live during the incident window |
+| 4 | **Autopsy 2.x image format error** | apt-installed Autopsy (v2.24) returned "image format type could not be determined" | Replaced with The Sleuth Kit CLI tools (mmls, fls, icat, mactime) — the same engine Autopsy wraps |
+| 5 | **Autopsy 4.x Java conflict** | Autopsy 4.21 crashed due to system running Java 25 (Security Manager removed in Java 17+) | Fixed by editing etc/autopsy.conf to set jdkhome to the Java 17 path, bypassing system Java |
+| 6 | **Disk image using wrong partition offset** | TSK commands returned no results when using default offset | Used mmls to identify correct start sector (63 for boot, LVM at 482013) and applied -o flag |
+| 7 | **LVM partition not accessible via TSK** | Root filesystem was inside LVM — fls returned no attack artifacts | Activated LVM with vgscan/vgchange and mounted root volume read-only for direct filesystem access |
+| 8 | **NetworkMiner rendering broken on Parrot KDE** | Mono + KDE caused black/blank GUI on all launch attempts | Replaced with tcpflow for stream reconstruction and p0f for OS fingerprinting — native Linux tools |
+| 9 | **Plaso CSV empty on first run** | psort used > redirection which corrupted the output | Used the -w flag instead of shell redirection to write the CSV file correctly |
+| 10 | **Snapd broken on Parrot OS** | AppArmor conflict prevented snapd from starting for Autopsy 4 install | Used manual Autopsy 4 installation with explicit jdkhome configuration instead of snap |
+
+
+
+
 ## 🖧 Part 1 — Campus Network Design (Cisco Packet Tracer)
 
 A reference campus network was designed and configured in Cisco Packet Tracer using a three-tier hierarchical model with five VLANs, a DMZ, an edge router, and an ISP router.
@@ -698,56 +751,6 @@ A comprehensive super timeline was generated from the entire victim disk image, 
 ![Disk Timeline View](screenshots/plaso_disk_view.png)
 
 ---
-
-## 🛠️ Tools Used
-
-| Tool | Purpose | Phase |
-|------|---------|-------|
-| **Cisco Packet Tracer** | Campus network design and simulation | Network Design |
-| **Nmap** | Network reconnaissance and port scanning | Reconnaissance |
-| **Metasploit Framework** | Exploitation of Samba usermap_script (CVE-2007-2447) | Exploitation |
-| **Netcat** | Data exfiltration via port 5555 | Exfiltration |
-| **tcpdump** | Passive network traffic capture on Kali #2 | Evidence Collection |
-| **LiME** | Live memory acquisition from victim machine | Evidence Collection |
-| **dd** | Forensic disk image acquisition | Evidence Collection |
-| **Wireshark** | PCAP analysis, protocol inspection, stream reconstruction | Network Forensics |
-| **Volatility3** | Memory dump analysis | Memory Forensics |
-| **The Sleuth Kit (TSK)** | Disk forensics — mmls, fls, icat, fsstat, mactime | Disk Forensics |
-| **Foremost** | File carving from disk image | Disk Forensics |
-| **Plaso / log2timeline** | Super timeline generation (62,631 events) | Timeline Analysis |
-| **tcpflow** | TCP stream reconstruction and data extraction | Network Forensics |
-| **p0f** | Passive OS fingerprinting from PCAP | Network Forensics |
-
----
-
-## 🔑 Key Findings
-
-| Finding | Evidence Source | Detail |
-|---------|----------------|--------|
-| Nmap reconnaissance confirmed | Wireshark SYN filter | Rapid SYN packets to multiple ports from 192.168.56.10 |
-| vsftpd exploit attempted but failed | Wireshark + Metasploit logs | CVE-2011-2523 not triggered |
-| Samba exploit successful | Wireshark port 445 stream | CVE-2007-2447 payload confirmed |
-| Root shell on port 6200 | Wireshark TCP stream | Attacker commands visible in plaintext |
-| Backdoor user created | /etc/passwd on disk | aptbackdoor:x:1003:1003::/home/aptbackdoor:/bin/bash |
-| Data exfiltration confirmed | Wireshark port 5555 stream | Employee data visible in plaintext |
-| 62,631 filesystem events | Plaso disk timeline | Complete activity log of victim disk |
-
----
-
-## ⚡ Challenges & Mitigations
-
-| # | Challenge | What Happened | How It Was Fixed |
-|---|-----------|---------------|-----------------|
-| 1 | **vsftpd exploit failed** | Metasploit vsftpd_234_backdoor module did not trigger a shell | Switched to Samba usermap_script exploit (CVE-2007-2447) which successfully returned a root shell |
-| 2 | **LiME kernel header mismatch** | LiME failed to compile due to Kali running a cutting-edge kernel with no available headers | Installed stable kernel packages with matching headers and rebooted before recompiling LiME |
-| 3 | **Memory evidence lost** | Volatile memory data (processes, connections) had disappeared by the time Volatility3 analysis began | Documented as a key lesson: memory forensics must be performed live during the incident window |
-| 4 | **Autopsy 2.x image format error** | apt-installed Autopsy (v2.24) returned "image format type could not be determined" | Replaced with The Sleuth Kit CLI tools (mmls, fls, icat, mactime) — the same engine Autopsy wraps |
-| 5 | **Autopsy 4.x Java conflict** | Autopsy 4.21 crashed due to system running Java 25 (Security Manager removed in Java 17+) | Fixed by editing etc/autopsy.conf to set jdkhome to the Java 17 path, bypassing system Java |
-| 6 | **Disk image using wrong partition offset** | TSK commands returned no results when using default offset | Used mmls to identify correct start sector (63 for boot, LVM at 482013) and applied -o flag |
-| 7 | **LVM partition not accessible via TSK** | Root filesystem was inside LVM — fls returned no attack artifacts | Activated LVM with vgscan/vgchange and mounted root volume read-only for direct filesystem access |
-| 8 | **NetworkMiner rendering broken on Parrot KDE** | Mono + KDE caused black/blank GUI on all launch attempts | Replaced with tcpflow for stream reconstruction and p0f for OS fingerprinting — native Linux tools |
-| 9 | **Plaso CSV empty on first run** | psort used > redirection which corrupted the output | Used the -w flag instead of shell redirection to write the CSV file correctly |
-| 10 | **Snapd broken on Parrot OS** | AppArmor conflict prevented snapd from starting for Autopsy 4 install | Used manual Autopsy 4 installation with explicit jdkhome configuration instead of snap |
 
 ---
 
