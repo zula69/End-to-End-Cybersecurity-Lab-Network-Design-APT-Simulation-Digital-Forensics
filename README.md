@@ -385,22 +385,28 @@ The core switch provides Layer 3 inter-VLAN routing, assigns SVI IP addresses fo
 
 - Configuring Web Server
 <!-- Screenshot -->
-![Web Server Config](screenshots/pt_web_server.png)
+<img width="1920" height="1080" alt="ip configuration of the web server" src="https://github.com/user-attachments/assets/a23ea245-454a-4c3a-b1b9-eb44e8efca18" />
+
+<img width="1920" height="1080" alt="turning on http server in web server" src="https://github.com/user-attachments/assets/9180b1d5-421e-4ed6-a2bf-e9a36e3cb71f" />
 
 - Configuring DNS Server
 <!-- Screenshot -->
-![DNS Server Config](screenshots/pt_dns_server.png)
+<img width="1920" height="1080" alt="configuring DNS server" src="https://github.com/user-attachments/assets/f010d869-5ddf-42d5-8abd-7b90c3fb012c" />
+
+<img width="1920" height="1080" alt="adding the DNS server" src="https://github.com/user-attachments/assets/a4f7b6c7-f7bb-48ba-b781-5a9869459f85" />
 
 - Configuring Mail Server
 <!-- Screenshot -->
-![Mail Server Config](screenshots/pt_mail_server.png)
+<img width="1920" height="1080" alt="configuring mail server" src="https://github.com/user-attachments/assets/536aa1ab-504b-4491-96ba-8fb40e2460a0" />
+
+<img width="1920" height="1080" alt="turning the mail server on" src="https://github.com/user-attachments/assets/531fd2fe-12c7-4d90-9371-b7a8a46fefc4" />
 
 ---
 
 ### 🗺️ Final Network Topology
 
 <!-- Screenshot: full Packet Tracer topology -->
-![Final Topology](screenshots/pt_final_topology.png)
+<img width="1920" height="1080" alt="Final network topology" src="https://github.com/user-attachments/assets/9c8b1bc4-b2d8-4554-a925-3ed3b23b3c31" />
 
 ---
 
@@ -408,9 +414,40 @@ The core switch provides Layer 3 inter-VLAN routing, assigns SVI IP addresses fo
 
 All VLANs were verified to communicate correctly through the three-tier hierarchy.
 
-- Pinging from Student PC to all other VLANs (all successful)
+- Testing connectivity 
 <!-- Screenshot -->
-![Ping Tests](screenshots/pt_ping_tests.png)
+- from student 2 to student 1
+<img width="1920" height="1080" alt="student 2 to student 1" src="https://github.com/user-attachments/assets/25c95488-f802-4f3e-95dd-a142a85c1a78" />
+
+- from staff to student 1
+<img width="1920" height="1080" alt="staff to student 1" src="https://github.com/user-attachments/assets/8ef6c3a0-f6e7-4d09-9635-05c64fb930df" />
+
+- from admin to student 1
+<img width="1920" height="1080" alt="admin to student" src="https://github.com/user-attachments/assets/0c0ac8fd-5341-46b7-bdcb-1a2ae18c6d7d" />
+
+- from library to student 1
+<img width="1920" height="1080" alt="library to student" src="https://github.com/user-attachments/assets/471cc288-8c66-451f-9994-f78e966ad452" />
+
+- from guest to student 1
+<img width="1920" height="1080" alt="guest to  student" src="https://github.com/user-attachments/assets/c65ef7ee-dc16-459c-a7bd-e57324996a0b" />
+
+- from web server to student 1
+<img width="1920" height="1080" alt="web to student" src="https://github.com/user-attachments/assets/148378d2-d4b4-4d02-ba45-35fde24488ac" />
+
+- from DNS to student 1
+<img width="1920" height="1080" alt="DNS to student" src="https://github.com/user-attachments/assets/2dc8fde6-fdda-44cb-86a5-38003e300b72" />
+
+- from mail server to student 1
+<img width="1920" height="1080" alt="mail to student" src="https://github.com/user-attachments/assets/2139644e-7f2d-421f-8382-393bfbf91c06" />
+
+- from firewall to student 1
+<img width="1920" height="1080" alt="firewall to student" src="https://github.com/user-attachments/assets/ab9de653-e91a-4bda-9208-0bb070c14912" />
+
+- from edge router to student 1
+<img width="1920" height="1080" alt="edge router to student" src="https://github.com/user-attachments/assets/4a77c0c1-8e5d-47dd-8b21-f40c86d50e06" />
+
+- from ISP to student 1
+<img width="1920" height="1080" alt="ISP router to studemt" src="https://github.com/user-attachments/assets/7a79db3b-a6c8-49d3-8bdc-0eb6a25929de" />
 
 ---
 
@@ -421,8 +458,20 @@ Four ACLs were implemented on the Core Switch to enforce the campus security pol
 #### ACL 1 — Guest WiFi Policy
 > Guests can access the internet but are completely blocked from all internal departments
 
+<img width="1920" height="1080" alt="configuring access list on guest  1" src="https://github.com/user-attachments/assets/84961a97-e0fc-4d81-a375-eaa1d074fadf" />
+
+- Blocking other IPs
+<img width="1920" height="1080" alt="guest blocking others" src="https://github.com/user-attachments/assets/e1ac3959-2059-41cf-ae72-a2ee2187c629" />
+
+- Allowing access only to the internet
+<img width="1920" height="1080" alt="permitting only internet" src="https://github.com/user-attachments/assets/d531007f-18ae-4a6a-b6e4-747d0b75a632" />
+
+<img width="1920" height="1080" alt="saving guest" src="https://github.com/user-attachments/assets/283f73a2-eb0d-4b8d-81e2-76fd3c4598d1" />
+
 ```
 Guests (VLAN 50) → ❌ VLAN 10 (Students)
+<img width="1920" height="1080" alt="ping to student unsuccessful" src="https://github.com/user-attachments/assets/2183aedc-af2a-4a6c-8b8a-66779d2f50f6" />
+
 Guests (VLAN 50) → ❌ VLAN 20 (Staff)
 Guests (VLAN 50) → ❌ VLAN 30 (Admin)
 Guests (VLAN 50) → ❌ VLAN 40 (Library)
