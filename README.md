@@ -689,15 +689,25 @@ Kali Linux #2 was configured as a **passive network monitor**. It silently captu
 
 - Starting tcpdump to capture all network traffic
 <!-- Screenshot -->
-![tcpdump Start](screenshots/kali2_tcpdump_start.png)
+installing tcpdump
+<img width="1920" height="1080" alt="kali 2 installing tcpdump" src="https://github.com/user-attachments/assets/abce049e-8aff-4e2a-8ef8-0aedcbcf9443" />
+
+creating a folder to collect evidences on kali 2
+<img width="1920" height="1080" alt="kali 2 creating a folder to store evidence" src="https://github.com/user-attachments/assets/cfec5485-e9d2-4748-a648-929d9d1fa598" />
+
+<img width="1920" height="1080" alt="creating evidence structure kali 2" src="https://github.com/user-attachments/assets/a48d0d79-6dc6-4277-b4f9-51d4035dbd7a" />
+
+running tcpdump on the host-only network
+<img width="1920" height="1080" alt="running tcpdump in kali 2" src="https://github.com/user-attachments/assets/ed32a400-99dd-488d-9da8-39506f167eaf" />
 
 - Collecting Nmap scan results from Kali #2 to Metasploitable2
 <!-- Screenshot -->
-![Nmap Scan Evidence](screenshots/kali2_nmap_evidence.png)
+<img width="1920" height="1080" alt="nmap scan for metasloitable2 from kali 2 to victim and saved it to a baseline txt evidence" src="https://github.com/user-attachments/assets/2a60080f-0403-4803-83d1-94816fc09820" />
 
 - Collecting journalctl system logs as supporting evidence
 <!-- Screenshot -->
-![journalctl Evidence](screenshots/kali2_journalctl.png)
+<img width="1920" height="1080" alt="saving activities in the journbalctl in to a log file" src="https://github.com/user-attachments/assets/28b9ceb2-4296-4619-8af6-d534c41a7a49" />
+
 
 ---
 
@@ -707,7 +717,14 @@ The attacker performed network reconnaissance using Nmap to identify open ports 
 
 - Nmap SYN scan to identify open ports on Metasploitable2
 <!-- Screenshot -->
-![Nmap Recon](screenshots/kali1_nmap_recon.png)
+basic nmap port scan
+<img width="1920" height="1080" alt="kali 1 basic recoassistance phase basic nmap scan" src="https://github.com/user-attachments/assets/d42c9a68-2f29-4848-930f-c1b0855fa8dd" />
+
+Detailed nmap port scan
+<img width="1920" height="1080" alt="kali 1 detailed nmap scan of metasploit" src="https://github.com/user-attachments/assets/a9f5b193-3b69-4b99-b480-949f8fc3dd68" />
+
+saving nmap scan results
+<img width="1920" height="1080" alt="kali 1 it saved to attack txt" src="https://github.com/user-attachments/assets/4b7df8a3-0717-4fc0-9bda-bd7e8eea64f1" />
 
 **Key ports identified:**
 
@@ -719,7 +736,13 @@ The attacker performed network reconnaissance using Nmap to identify open ports 
 | 80 | HTTP | Apache 2.2.8 |
 | 3306 | MySQL | 5.0.51a |
 
----
+
+known vulnerabilities scan
+<img width="1920" height="1080" alt="kali 1 known ulnerbilities scan" src="https://github.com/user-attachments/assets/1f9a0657-f296-4b2a-aeeb-b70e300c9bcf" />
+
+Saving known vulnerabilities scan
+<img width="1920" height="1080" alt="kali 1 vulnerabilities text is saved" src="https://github.com/user-attachments/assets/3fc5990f-f54e-4bbd-8390-35b76d6d2dc7" />
+
 
 ### Step 4 — Exploitation (Kali #1 Attacker)
 
