@@ -935,13 +935,16 @@ The captured PCAP file was loaded into Wireshark on the Parrot OS workstation fo
 
 A memory dump was acquired from the victim machine during the attack window using the LiME kernel module and analysed with Volatility3.
 
-- Running Volatility3 linux.pslist to list processes
-<!-- Screenshot -->
-![Volatility PSList](screenshots/vol_pslist.png)
+- installing volatility3 in parrot os
+<img width="1920" height="1080" alt="installing votality3 in parrot os" src="https://github.com/user-attachments/assets/f463a02d-19c1-40df-bc80-6e8248a5c079" />
 
-- Running linux.netstat to check network connections
-<!-- Screenshot -->
-![Volatility Netstat](screenshots/vol_netstat.png)
+<img width="1920" height="1080" alt="installing dependencies of votality 3 by creating a virtual python environment" src="https://github.com/user-attachments/assets/52097175-24b9-4e87-b88f-57f9d295e049" />
+
+- Configuring LiME (Linux memory extractor)
+<img width="1920" height="1080" alt="configuring lime on kali 1 after identifying kali 1 is the attacker" src="https://github.com/user-attachments/assets/17f21626-e635-4836-9552-8249f18f647b" />
+
+- Sharing the memory dump to parrot os
+<img width="1920" height="1080" alt="memory dump recieved to security analizer  parrot os" src="https://github.com/user-attachments/assets/c4f74f35-4b94-4c1e-acd6-5f66c8da4bbe" />
 
 > ⚠️ **Finding:** By the time memory analysis was conducted, the attack processes had already terminated. No active malicious processes or connections were recovered from the memory dump. This highlights the critical importance of performing memory forensics **live during the incident** to capture volatile evidence before it disappears.
 
@@ -951,62 +954,83 @@ A memory dump was acquired from the victim machine during the attack window usin
 
 The victim disk image was forensically examined using The Sleuth Kit CLI tools. The image was mounted **read-only** throughout the entire analysis to preserve forensic integrity and maintain chain of custody.
 
+- Getting the disk image of metasploitable to kali 2
+<img width="1920" height="1080" alt="getting snapshot of metasploitable" src="https://github.com/user-attachments/assets/7b09cfca-4291-4d67-945f-941d4c84958d" />
+
+- Confirmation
+<img width="1920" height="1080" alt="confirming that the napshot is writing" src="https://github.com/user-attachments/assets/6d7cf6dd-bb74-47ed-811d-69235170f5fe" />
+
+<img width="1920" height="1080" alt="diskimage confirmation" src="https://github.com/user-attachments/assets/c374dab6-1726-4edd-832d-8297f436f0c0" />
+
+- Transferring the disk image to parrot os for analysis
+<img width="1920" height="1080" alt="getting disk image to parrot security analisor" src="https://github.com/user-attachments/assets/c9fc91d5-1acd-4ac5-bed3-f526deb9bd72" />
+
+
 - Viewing partition table with mmls
 <!-- Screenshot -->
-![mmls Partitions](screenshots/tsk_mmls.png)
-
-```
-002: 000:000   Start: 63        Linux (0x83)   ← Boot partition
-006: 001:000   Start: 482013    Linux LVM      ← Root filesystem
-```
+<img width="1920" height="1080" alt="sletk toolkit mmls to view the partitions of the disk" src="https://github.com/user-attachments/assets/e2e150c3-3fe0-4db2-9408-ccf744ff7e02" />
 
 - File system information using fsstat
 <!-- Screenshot -->
-![fsstat Output](screenshots/tsk_fsstat.png)
+<img width="1920" height="1080" alt="file system information of the disk" src="https://github.com/user-attachments/assets/d14776c6-3a3b-4804-abbb-8dc832daacc0" />
+
 
 - Listing all files including deleted ones with fls
 <!-- Screenshot -->
-![fls All Files](screenshots/tsk_fls_all.png)
+<img width="1920" height="1080" alt="list all files including deleted ones" src="https://github.com/user-attachments/assets/0807ea9d-399c-4ad1-b21f-532a0772066a" />
+
 
 - Viewing deleted files only (entries marked with *)
 <!-- Screenshot -->
-![fls Deleted Files](screenshots/tsk_fls_deleted.png)
+<img width="1920" height="1080" alt="viewing deleted files only" src="https://github.com/user-attachments/assets/925d8300-7eca-4ab5-8195-0b9c1effc723" />
+
 
 - Activating LVM and mounting root filesystem read-only
 <!-- Screenshot -->
-![LVM Mount](screenshots/tsk_lvm_mount.png)
+<img width="1920" height="1080" alt="mounting the disk image for further analysis" src="https://github.com/user-attachments/assets/ecd49b62-bfed-4d39-b487-36d8a26019d2" />
 
 - Browsing mounted victim filesystem — folder structure
 <!-- Screenshot -->
-![Victim Folders](screenshots/tsk_victim_folders.png)
+<img width="1920" height="1080" alt="folders in victim" src="https://github.com/user-attachments/assets/f8dc444d-3c34-40e2-b194-1546e748af99" />
 
 - Viewing /tmp directory contents
 <!-- Screenshot -->
-![tmp Files](screenshots/tsk_tmp_files.png)
+<img width="1920" height="1080" alt="tmp files of the victim" src="https://github.com/user-attachments/assets/e1ba0d82-040d-40c0-95cd-eaac9e4f3e11" />
+
 
 - **CRITICAL FINDING** — Backdoor user confirmed in /home/
 <!-- Screenshot -->
-![aptbackdoor Home](screenshots/tsk_aptbackdoor_home.png)
+<img width="1920" height="1080" alt="found the user profile created b the attacker apibackdoor" src="https://github.com/user-attachments/assets/e035a369-dcd9-449a-8b61-92452c1b0526" />
+
 
 - **CRITICAL FINDING** — aptbackdoor confirmed in /etc/passwd
 <!-- Screenshot -->
-![aptbackdoor Passwd](screenshots/tsk_aptbackdoor_passwd.png)
+<img width="1920" height="1080" alt="found the attacker profile" src="https://github.com/user-attachments/assets/fac9961b-e786-4fd6-9116-56c80919433d" />
+
+- Checking attacker's home directory
+<img width="1920" height="1080" alt="checking attacker home directory" src="https://github.com/user-attachments/assets/7662b8cb-bebc-4ace-a405-259ca1548c70" />
 
 - Viewing auth.log — login events and SSH connections
 <!-- Screenshot -->
-![Auth Log](screenshots/tsk_auth_log.png)
+<img width="1920" height="1080" alt="viewing authlog" src="https://github.com/user-attachments/assets/d30bfb36-7c5c-4dfa-b53b-5af60c269d1e" />
 
 - Viewing system messages log
 <!-- Screenshot -->
-![Messages Log](screenshots/tsk_messages_log.png)
+<img width="1920" height="1080" alt="viewing messages log" src="https://github.com/user-attachments/assets/71fdb66b-d306-436c-a2ee-6c37d8aa14e7" />
 
 - Listing all users who logged in
 <!-- Screenshot -->
-![User List](screenshots/tsk_user_list.png)
+<img width="1920" height="1080" alt="list of users logged" src="https://github.com/user-attachments/assets/54eb2b9a-1dbb-449d-a42e-3ac25146e6c2" />
+
 
 - All attacker-related connections filtered from logs
 <!-- Screenshot -->
-![Attacker Connections](screenshots/tsk_attacker_connections.png)
+<img width="1920" height="1080" alt="all connections of the attacker ip" src="https://github.com/user-attachments/assets/b4a75079-c114-4af2-99c5-e58334728686" />
+
+- Copying all logs as evidence
+<img width="1920" height="1080" alt="coppying all logs as evidence" src="https://github.com/user-attachments/assets/0fb317d5-c201-4604-a4a2-ca55715a2c7c" />
+
+<img width="1920" height="1080" alt="verfication of the copy" src="https://github.com/user-attachments/assets/0a79d61e-55d9-44ef-b521-347845929e93" />
 
 ---
 
@@ -1014,13 +1038,19 @@ The victim disk image was forensically examined using The Sleuth Kit CLI tools. 
 
 Foremost was used to carve and recover files from the victim disk image based on file headers and footers.
 
+- Installing foremost
+<img width="1920" height="1080" alt="installing foremost" src="https://github.com/user-attachments/assets/bbe15567-9795-491e-9eb1-34637eea7d26" />
+
 - Running Foremost on victim disk image
 <!-- Screenshot -->
-![Foremost Carving](screenshots/foremost_run.png)
+<img width="1920" height="1080" alt="foremost memory carving on victims diskfile" src="https://github.com/user-attachments/assets/e6a41e0c-f572-4415-91c7-657c88e8faae" />
+
 
 - Viewing carved files recovered from disk
 <!-- Screenshot -->
-![Carved Files](screenshots/foremost_carved.png)
+<img width="1920" height="1080" alt="foremost showing recovered files including text,images documents etc" src="https://github.com/user-attachments/assets/5bb5b9d7-185f-489c-9e04-7a33a25ca89c" />
+
+<img width="1920" height="1080" alt="foremost showing recovered files including text,images documents etc 2" src="https://github.com/user-attachments/assets/3b0d2baa-f66d-41e7-bc33-9af547e53b1b" />
 
 ---
 
@@ -1032,15 +1062,20 @@ Plaso was used to generate a super timeline from the captured PCAP file, providi
 
 - Running log2timeline on PCAP file
 <!-- Screenshot -->
-![Log2Timeline PCAP](screenshots/plaso_pcap_run.png)
+<img width="1920" height="1080" alt="creating a plaso log time" src="https://github.com/user-attachments/assets/d114bac7-a5e8-4193-b921-91a643f9c97a" />
+
 
 - Exporting to CSV with psort
 <!-- Screenshot -->
-![psort PCAP Export](screenshots/plaso_pcap_psort.png)
+<img width="1920" height="1080" alt="tramferring it to a csv file" src="https://github.com/user-attachments/assets/a5ae8db7-ed2e-4436-8e1c-ddcf0d90aee8" />
+
 
 - Viewing timeline in Kate — attack date, timezone, and timestamps confirmed
 <!-- Screenshot -->
-![PCAP Timeline Kate](screenshots/plaso_pcap_kate.png)
+<img width="1920" height="1080" alt="kate date, time, timezone, MACB, source, type, user, host column of filtered pcap" src="https://github.com/user-attachments/assets/abbd1183-0e4e-4c2b-b099-a72d273c1d4b" />
+
+<img width="1920" height="1080" alt="kate date, time, timezone, MACB, source, type, user, host column of filtered pcap 2" src="https://github.com/user-attachments/assets/85a82b08-4388-4bee-afa6-e8f637db301f" />
+
 
 #### 12b — Disk Super Timeline (62,631 Events)
 
@@ -1048,19 +1083,27 @@ A comprehensive super timeline was generated from the entire victim disk image, 
 
 - Running log2timeline on victim disk image (LVM volume selected)
 <!-- Screenshot -->
-![Log2Timeline Disk](screenshots/plaso_disk_run.png)
+<img width="1920" height="1080" alt="plaso of disk image" src="https://github.com/user-attachments/assets/9c61bf3b-4fdf-4122-938b-44d0178c36da" />
+
+<img width="1920" height="1080" alt="plaso of disk image 2" src="https://github.com/user-attachments/assets/d5fe3624-5e2b-4b92-b69b-fcc2cd2c1165" />
 
 - Processing completed — 62,631 events extracted
 <!-- Screenshot -->
-![Plaso Disk Complete](screenshots/plaso_disk_complete.png)
+<img width="1920" height="1080" alt="completed" src="https://github.com/user-attachments/assets/19a2cdb4-925b-497b-a1a0-d452e27c7137" />
 
 - Exporting disk timeline to CSV
 <!-- Screenshot -->
-![Disk Timeline CSV](screenshots/plaso_disk_csv.png)
+<img width="1920" height="1080" alt="converting plaso in to a csv readable file 1" src="https://github.com/user-attachments/assets/5e0dc1f8-a18c-4269-9a2e-6e27083f8351" />
+
+<img width="1920" height="1080" alt="converting plaso in to a csv readable file 2" src="https://github.com/user-attachments/assets/92ed8985-d63c-43f3-a92c-6e835e2e05a8" />
+
 
 - Viewing disk timeline — searching for attack artifacts
 <!-- Screenshot -->
-![Disk Timeline View](screenshots/plaso_disk_view.png)
+<img width="1920" height="1080" alt="kate result of disk timeline csv" src="https://github.com/user-attachments/assets/083875e7-569e-44b5-bbbc-7fbe57e47da2" />
+
+- Searching for attacker's artifacts in disk timeline
+<img width="1920" height="1080" alt="searching for attack artifacts in timeline" src="https://github.com/user-attachments/assets/ee44fdbe-b12d-49c0-acca-dbcfe5a0b2a4" />
 
 ---
 
@@ -1080,8 +1123,7 @@ forensic/
 │   ├── disk_timeline.csv         # Plaso disk timeline (62,631 events)
 │   ├── auth.log                  # Victim authentication logs
 │   ├── passwd.txt                # Victim /etc/passwd (backdoor confirmed)
-│   ├── networkminer_findings.txt # tcpflow/p0f network analysis findings
-│   ├── FINDINGS_SUMMARY.txt      # Master forensic findings document
+│   ├── FINDINGS_SUMMARY.txt      # Master forensic findings documen
 │   └── reports/
 │       └── IR_Report_ICBT.docx   # Full Incident Response Report
 └── carved_files/                 # Files recovered by Foremost
