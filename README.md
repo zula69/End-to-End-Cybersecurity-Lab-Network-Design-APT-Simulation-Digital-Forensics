@@ -751,20 +751,19 @@ Saving known vulnerabilities scan
 The attacker first attempted to exploit the vsftpd 2.3.4 backdoor vulnerability (CVE-2011-2523) using Metasploit. The exploit did not succeed on this target.
 
 - Attempting vsftpd exploit — failed
-<!-- Screenshot -->
-![vsftpd Fail](screenshots/kali1_vsftpd_fail.png)
 
 #### Attempt 2 — Samba usermap_script (Succeeded ✅)
 
 The attacker then targeted the Samba service using the usermap_script vulnerability (CVE-2007-2447), which allows unauthenticated remote command execution as root.
 
-- Configuring Metasploit with exploit/multi/samba/usermap_script
-<!-- Screenshot -->
-![Samba Exploit Config](screenshots/kali1_samba_config.png)
+- Configuring Metasploit
+<img width="1920" height="1080" alt="kali 1 current meta settings" src="https://github.com/user-attachments/assets/494a237f-f42d-45c2-b5e9-66914a550b73" />
+
+<img width="1920" height="1080" alt="kali 1 meta samba" src="https://github.com/user-attachments/assets/c3e8728a-8e61-4b49-8d54-f9ece17ee3fb" />
 
 - Running the exploit — root shell obtained
 <!-- Screenshot -->
-![Root Shell Obtained](screenshots/kali1_root_shell.png)
+<img width="1920" height="1080" alt="whoami" src="https://github.com/user-attachments/assets/807e5112-87f9-46fd-a26e-8349f6db0dbe" />
 
 ---
 
@@ -772,17 +771,45 @@ The attacker then targeted the Samba service using the usermap_script vulnerabil
 
 With root access established, the attacker created a backdoor user account to maintain persistent access even if the initial shell was closed.
 
+- Viewing victim's details ( hostname)
+<img width="1920" height="1080" alt="hostname" src="https://github.com/user-attachments/assets/d050a4da-046a-4193-b804-09f0340f6afa" />
+
+- Viewing victim's details ( operating system details )
+<img width="1920" height="1080" alt="operating system details" src="https://github.com/user-attachments/assets/3a566f59-f089-4843-9c8c-61451119318c" />
+
+- Viewing victim's details ( full user and group ids)
+<img width="1920" height="1080" alt="shows full user and group ids" src="https://github.com/user-attachments/assets/f09092f0-e165-47b0-9be5-e643b7e1206f" />
+
+- Viewing victim's details ( all user account hashes)
+<img width="1920" height="1080" alt="shows all user accounts hashes" src="https://github.com/user-attachments/assets/1d9c905a-406f-44ad-a65d-7797a0e6331b" />
+
+- Viewing victim's details ( all user home directories)
+<img width="1920" height="1080" alt="shows all user home directories" src="https://github.com/user-attachments/assets/2296aa5b-fd71-4178-95aa-c06a9d473acc" />
+
+- Viewing victim's details ( Viewing open ports)
+<img width="1920" height="1080" alt="shows open ports netstat -tulnp" src="https://github.com/user-attachments/assets/2ae6f6e5-7474-4e04-889d-9865d92d32f8" />
+
+- Viewing victim's details ( All running processes )
+<img width="1920" height="1080" alt="ps aux shows all running processos" src="https://github.com/user-attachments/assets/4a18fad1-9cc9-43d2-bbd3-4e189b10e443" />
+
 - Creating backdoor user account (aptbackdoor)
 <!-- Screenshot -->
-![Backdoor User Created](screenshots/kali1_backdoor_user.png)
+<img width="1920" height="1080" alt="adding a user in meta aptbackdoor" src="https://github.com/user-attachments/assets/fca72d25-ef89-4eb7-b53e-f70760267e52" />
+
+<img width="1920" height="1080" alt="adding a password for aptbackdoor" src="https://github.com/user-attachments/assets/4ed0a8d6-e06d-445f-88f5-a5c0896ebcc2" />
 
 - Verifying backdoor account in /etc/passwd
 <!-- Screenshot -->
-![Backdoor in Passwd](screenshots/kali1_backdoor_passwd.png)
+<img width="1920" height="1080" alt="verifying password and the user added" src="https://github.com/user-attachments/assets/bf6ef3f7-eecb-4f27-b341-e26160f33afa" />
 
 ```
 aptbackdoor:x:1003:1003::/home/aptbackdoor:/bin/bash
 ```
+- Adding user to sudors and giving the root access to aptbackdoor
+<img width="1920" height="1080" alt="add to sudors and gives root access" src="https://github.com/user-attachments/assets/655544eb-8f5a-4f18-94d8-12dcc22f3127" />
+
+- Openning a reverse shell backdoor
+<img width="1920" height="1080" alt="opened a reverse shell backdoor in metasploit" src="https://github.com/user-attachments/assets/b70ef6e7-5826-4f27-ac61-8143eee03088" />
 
 ---
 
@@ -790,23 +817,49 @@ aptbackdoor:x:1003:1003::/home/aptbackdoor:/bin/bash
 
 The attacker located and exfiltrated confidential employee records from the victim machine using Netcat on port 5555.
 
-- Locating confidential employee data on victim
-<!-- Screenshot -->
-![Finding Data](screenshots/kali1_find_data.png)
+- Creating a directory to store stolen files
+<img width="1920" height="1080" alt="creatd a directory to store stolen files" src="https://github.com/user-attachments/assets/ef44e067-567e-408f-a3c5-da3b92843c0e" />
+
+- Copping sensitive data
+<img width="1920" height="1080" alt="also copy real sentivie data to tmp confidential" src="https://github.com/user-attachments/assets/5421a0e1-d892-4501-a6ee-75efd5b52d3d" />
 
 - Exfiltrating data via Netcat on port 5555
 <!-- Screenshot -->
-![Data Exfiltration](screenshots/kali1_exfiltration.png)
+<img width="1920" height="1080" alt="created a listingg port on kali 1 to recieve data from metsploit" src="https://github.com/user-attachments/assets/36e6b846-24a3-424d-a104-2547ac8bae45" />
 
----
+<img width="1920" height="1080" alt="sending the file to kali 1" src="https://github.com/user-attachments/assets/6f7159d4-6a01-41ad-bb50-5a954a9311bd" />
+
+- Confirmation
+
+<img width="1920" height="1080" alt="confirmation employee data recieved" src="https://github.com/user-attachments/assets/bf7449c1-fbc3-43cc-bf2d-d0cef8911d72" />
+
+<img width="1920" height="1080" alt="passwd succesful" src="https://github.com/user-attachments/assets/df37f294-edf4-4fca-9026-fdc910d31768" />
+
+<img width="1920" height="1080" alt="shadow successful" src="https://github.com/user-attachments/assets/2796b315-0999-4d2d-9cdb-ee0147e217ec" />
+
+- Removing traces and folders
+<img width="1920" height="1080" alt="removing traces" src="https://github.com/user-attachments/assets/71d63700-06b9-4b69-abd2-cf2d9877405a" />
+
+<img width="1920" height="1080" alt="removing files" src="https://github.com/user-attachments/assets/4feec492-2471-46c5-b7e8-cbd021aabf88" />
+
+<img width="1920" height="1080" alt="exit" src="https://github.com/user-attachments/assets/93a510c5-de0f-4e87-a8ca-7ebabe9ba5f1" />
 
 ### Step 7 — Evidence Transfer to Parrot OS
 
 All evidence collected by Kali #2 was transferred securely to the Parrot OS forensic workstation via SCP for analysis.
 
+- All evidence in kali 2
+<img width="1920" height="1080" alt="all evidence in watcher kali 2" src="https://github.com/user-attachments/assets/8df0269b-8ec9-43a8-a1a2-48db1d234111" />
+
+- Creating a directory in parrot os to store evidence
+<img width="1920" height="1080" alt="create a directory in parrot os to store evience file" src="https://github.com/user-attachments/assets/69619886-b8ec-49de-a5b6-656adc4fa1c3" />
+
 - Transferring PCAP, memory dump, disk image to Parrot OS
 <!-- Screenshot -->
-![Evidence Transfer](screenshots/kali2_scp_transfer.png)
+<img width="1920" height="1080" alt="obtaining evidence from kali 2 for forensics" src="https://github.com/user-attachments/assets/a84d5953-f5f5-49ba-b609-1509eb68a3d9" />
+
+<img width="1920" height="1080" alt="verification" src="https://github.com/user-attachments/assets/07310ec9-352e-4671-940c-126087dcb54a" />
+
 
 ---
 
@@ -818,35 +871,63 @@ The captured PCAP file was loaded into Wireshark on the Parrot OS workstation fo
 
 - Packet statistics overview
 <!-- Screenshot -->
-![Packet Statistics](screenshots/ws_packet_stats.png)
+<img width="1920" height="1080" alt="statics of the packet" src="https://github.com/user-attachments/assets/28da7f3b-792b-473d-9621-9c7d827a1457" />
 
 - Protocol hierarchy statistics
 <!-- Screenshot -->
-![Protocol Stats](screenshots/ws_protocol_stats.png)
+<img width="1920" height="1080" alt="list of protocol statics" src="https://github.com/user-attachments/assets/62a23fd7-cdef-497b-82ab-2824adc2558c" />
+
+<img width="1920" height="1080" alt="lis of protocol statics  2" src="https://github.com/user-attachments/assets/65ba9547-3ea7-4931-9a37-ff8e694ef637" />
+
+<img width="1920" height="1080" alt="list of protocol statics 3" src="https://github.com/user-attachments/assets/0127781c-7250-46c1-938a-8bf797e70e4f" />
 
 - IPv4 conversations — identifying attacker-victim traffic
 <!-- Screenshot -->
-![IPv4 Conversations](screenshots/ws_ipv4_conversations.png)
+<img width="1920" height="1080" alt="statics conversation from who to who" src="https://github.com/user-attachments/assets/a4adbd74-acc7-4c9e-aff7-6e833adca6e0" />
 
-- Traffic statistics by endpoint
+
+- Traffic statistics by endpoint (ipv4 info)
 <!-- Screenshot -->
-![Traffic Stats](screenshots/ws_traffic_stats.png)
+<img width="1920" height="1080" alt="statics ipv4 info activity" src="https://github.com/user-attachments/assets/70898840-34a7-4ace-b413-de00490eea83" />
+
 
 - Applying SYN filter to identify Nmap reconnaissance scan (`tcp.flags.syn==1 && tcp.flags.ack==0`)
 <!-- Screenshot -->
-![SYN Filter Nmap](screenshots/ws_syn_filter.png)
+<img width="1920" height="1080" alt="applying syn filter because nmapo scans send 1000 of em to identify target" src="https://github.com/user-attachments/assets/ad80f594-ed0f-4a92-bdf3-8d24e9dd663e" />
+
 
 - Confirming Samba exploit traffic on port 445
 <!-- Screenshot -->
-![Samba Attack Confirmed](screenshots/ws_samba_attack.png)
+<img width="1920" height="1080" alt="samba attack confirmation metasploitable on tcp port 445" src="https://github.com/user-attachments/assets/8fe0e520-68ad-446c-b21a-26bbe8f1a286" />
+
+<img width="1920" height="1080" alt="samba exploitation 2" src="https://github.com/user-attachments/assets/bfced547-dab7-4961-8f94-2d8577a5756e" />
 
 - Recovering attacker commands from TCP stream (port 6200)
 <!-- Screenshot -->
-![Attacker Commands](screenshots/ws_attacker_commands.png)
+<img width="1920" height="1080" alt="commands of the attacker" src="https://github.com/user-attachments/assets/facc1a48-cae8-4ac5-a1f6-fc9aca2dd40f" />
+
 
 - Confirming data exfiltration on port 5555 — employee data visible in plaintext
 <!-- Screenshot -->
-![Exfiltration Evidence](screenshots/ws_exfiltration.png)
+<img width="1920" height="1080" alt="data exfiltration on port 5555 from meta to kali attakcer 1" src="https://github.com/user-attachments/assets/5cc2d9e3-a7c1-447d-828a-898e7a624539" />
+
+- filtering all samba related traffic
+<img width="1920" height="1080" alt="all samba related traffic filtered" src="https://github.com/user-attachments/assets/1433d4ec-2223-4b34-afac-9e80521dcb33" />
+
+- filtering all traffic related to attacker and the victim
+<img width="1920" height="1080" alt="all traffic filtered from attacker to metasploit" src="https://github.com/user-attachments/assets/becdbde9-9f6f-45e3-979d-081fdecd35e5" />
+
+- Saving all filtered traffic as evidence
+<img width="1920" height="1080" alt="saving all transferred files as evience" src="https://github.com/user-attachments/assets/5e339187-114a-4d68-b7fa-34286fef3dbb" />
+
+<img width="1920" height="1080" alt="saving tranfered files for evidence 2" src="https://github.com/user-attachments/assets/4d6c7ddc-27d4-469c-9da1-58cde2f0fbec" />
+
+<img width="1920" height="1080" alt="saving tranfered files for evidence  3" src="https://github.com/user-attachments/assets/9f2abc4b-9324-4f17-9ca8-b4697fcb1194" />
+
+- Saving it as a CSV file (because it is easier to work with)
+<img width="1920" height="1080" alt="saving as a csv so easy to work with it" src="https://github.com/user-attachments/assets/9cdc8096-54df-4be8-b60b-69df9e37894d" />
+
+<img width="1920" height="1080" alt="evidence csv saved" src="https://github.com/user-attachments/assets/7b40dd6e-6108-4e68-aabc-d553401fec6f" />
 
 ---
 
