@@ -639,48 +639,47 @@ Students (VLAN 10) → ❌ VLAN 20 (Staff)
 
 <img width="1920" height="1080" alt="setting up ip for parrot 3" src="https://github.com/user-attachments/assets/4f8c41fd-236c-4053-ab4d-44c78b01fe7a" />
 
+- Setting up ip for metasploit
+<img width="1920" height="1080" alt="setting up ip for metasploit" src="https://github.com/user-attachments/assets/c909512a-4755-48df-9788-4e1b72895099" />
 
+<img width="1920" height="1080" alt="setting up ip for metasploit   2" src="https://github.com/user-attachments/assets/8494a1e5-8ffe-4f8a-a3c5-a646c2686377" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<img width="1920" height="1080" alt="setting up ip for metasploit    3" src="https://github.com/user-attachments/assets/c560ea9c-c0a1-48d8-bc7a-b661237ac21c" />
 
 ### Step 1 — Network Verification
 
 Verified all VMs can communicate over the host-only network before beginning the attack simulation.
 
-- Pinging from Kali #1 to Metasploitable2
+- Pinging from Kali #1 to all VMs
 <!-- Screenshot -->
+<img width="1920" height="1080" alt="ping from kali 1 to kali 2" src="https://github.com/user-attachments/assets/2aa6ea03-8391-47ec-a019-309ebc031d3f" />
 
+<img width="1920" height="1080" alt="ping from kali 1 to parot" src="https://github.com/user-attachments/assets/44d100ba-ca36-40f0-a345-233a7f5c2d50" />
+
+<img width="1920" height="1080" alt="ping from kali 1 to metasploit" src="https://github.com/user-attachments/assets/89ca1ab2-6a32-4b0d-82c8-3dc2d7517e48" />
 
 - Pinging from Kali #2 to all VMs
 <!-- Screenshot -->
-![Ping Watcher](screenshots/vm_ping_watcher.png)
+<img width="1920" height="1080" alt="ping from kali 2 to kali 1" src="https://github.com/user-attachments/assets/505245c8-5d10-4c72-b64f-14f700b6528e" />
+
+<img width="1920" height="1080" alt="ping from kali 2 to parrot" src="https://github.com/user-attachments/assets/e1451e94-0dfc-4d0b-8090-e89679d91ba2" />
+
+<img width="1920" height="1080" alt="ping from kali 2 to metasloit" src="https://github.com/user-attachments/assets/e0929b3f-f741-4a76-9fa3-0a40e890f681" />
 
 - Pinging from Parrot OS to all VMs
 <!-- Screenshot -->
-![Ping Parrot](screenshots/vm_ping_parrot.png)
+<img width="1920" height="1080" alt="ping parrot to kali 1" src="https://github.com/user-attachments/assets/c03dc386-4909-4e88-9571-959469fc7f23" />
+
+<img width="1920" height="1080" alt="ping from parrot to kali 2" src="https://github.com/user-attachments/assets/17e61766-9560-4902-9572-291faf41462d" />
+
+<img width="1920" height="1080" alt="ping from parrot to metaslploit" src="https://github.com/user-attachments/assets/5e196413-72be-405a-a0f3-faa2d3bd73e7" />
+
+- Pinging from metasploit to all VMs
+<img width="1920" height="1080" alt="ping from meta to kali 1" src="https://github.com/user-attachments/assets/cf93bf3c-2455-4d54-a6ef-7062506292bd" />
+
+<img width="1920" height="1080" alt="ping from meta to kali 2" src="https://github.com/user-attachments/assets/46f36f84-990a-4c5c-aa43-9a233e0cd282" />
+
+<img width="1920" height="1080" alt="ping from meta to parot" src="https://github.com/user-attachments/assets/283b85c8-fc67-47bd-af58-d6238124a59c" />
 
 ---
 
