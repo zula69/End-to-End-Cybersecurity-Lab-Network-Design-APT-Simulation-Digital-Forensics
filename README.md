@@ -1128,6 +1128,9 @@ forensic/
 │       └── IR_Report_ICBT.docx   # Full Incident Response Report
 └── carved_files/                 # Files recovered by Foremost
 ```
+## Incident Response report
+[ICBT_APT_Incident_Response_Report.pdf](https://github.com/user-attachments/files/29301722/ICBT_APT_Incident_Response_Report.pdf)
+
 
 ---
 
